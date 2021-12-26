@@ -1,0 +1,9 @@
+# ignore emacs backup files
+*~
+
+# vscode
+.vscode/
+*.code-workspace
+
+# node
+node_modules/
