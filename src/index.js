@@ -8,5 +8,5 @@ module.exports = {
     parser,
     parse: (code) => parser.parse(lexer.lex(code)),
     interpreter,
-    interpret: interpreter.interpret
+    interpret: (code, context={}, scope={}) => interpreter.interpret(parser.parse(lexer.lex(code)), context, scope)
 };

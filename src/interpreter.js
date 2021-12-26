@@ -103,14 +103,21 @@ function interpret_block(statement_list, context={}, scope={}) {
 }
 
 module.exports = {
-    interpret: function(code, context={}, scope={}) {
-        const lexims = lexer.lex(code);
-        const statement_list = [];
-        try {
-            statement_list.push(...parser.parse(lexims));
-        } catch (err) {
-            console.error(err);
+    interpret: function(statement_list, context={}, scope={}) {
+        let result = 0;
+        for (let statement of statement_list) {
+            result = eval(context, scope, statement);
         }
-        return interpret_block(statement_list, context, scope);
+        return result;
     }
+    // interpret: function(code, context={}, scope={}) {
+    //     const lexims = lexer.lex(code);
+    //     const statement_list = [];
+    //     try {
+    //         statement_list.push(...parser.parse(lexims));
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    //     return interpret_block(statement_list, context, scope);
+    // }
 };

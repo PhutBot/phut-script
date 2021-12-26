@@ -316,7 +316,13 @@ function interpreter_tests() {
 }
 
 function interpret_test(code, expected, line, context={}, scope={}) {
-    const result = ps.interpret(code, context, scope);
+    let result;
+
+    try {
+        result = ps.interpret(code, context, scope);
+    } catch (err) {
+        console.error(err);
+    }
 
     if (typeof result === 'string') {
         console.assert(result === expected,
